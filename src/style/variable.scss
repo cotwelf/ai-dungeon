@@ -1,0 +1,22 @@
+$blue: #00aeec;
+$pink: #fb7299;
+$font-size-big: 30px;
+$dialogue-bg-color: rgba(255, 255, 255, 0.5);
+$dialogue-width: 100vw;
+$dialogue-height: 30vh;
+$dialogue-space-normal: 20px;
+$dialogue-space-wider: 50px;
+$text-shadow-default: -1px -1px 1px #000,
+              1px -1px 1px #000,
+              -1px 1px 1px #000,
+              1px 1px 1px #000;
+@keyframes blink {
+  0% { opacity: 0; }
+  30% { opacity: 0.5; }
+  60% { opacity: 1; }
+  100% { opacity: 0.5; }
+}
+
+.default-bg {
+  background-image: url('../assets/default-bg.jpeg');
+}
