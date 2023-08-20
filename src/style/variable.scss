@@ -1,6 +1,9 @@
 $blue: #00aeec;
 $pink: #fb7299;
-$font-size-big: 30px;
+$pink-light: #ff74a5;
+$black: #1d2129;
+$card-background: rgba(255, 255, 255, 0.6);
+$space-wide: 30px;
 $dialogue-bg-color: rgba(255, 255, 255, 0.5);
 $dialogue-width: 100vw;
 $dialogue-height: 30vh;
@@ -12,11 +15,29 @@ $text-shadow-default: -1px -1px 1px #000,
               1px 1px 1px #000;
 @keyframes blink {
   0% { opacity: 0; }
-  30% { opacity: 0.5; }
-  60% { opacity: 1; }
-  100% { opacity: 0.5; }
+  50% { opacity: 1; }
+  100% { opacity: 0; }
 }
 
 .default-bg {
-  background-image: url('../assets/default-bg.jpeg');
+  background-image: url('/default-bg.jpeg');
+  background-size: cover;
+}
+
+.page-changing {
+  background-color: white;
+  width: 100vw;
+  height: 100vh;
+  animation: blink 2s;
+  z-index: 999;
+  position: absolute;
+}
+.card-changing {
+  opacity: 1;
+  transition: opacity 1s;
+}
+
+.show {
+  opacity: 1 !important;
+  z-index: 999;
 }

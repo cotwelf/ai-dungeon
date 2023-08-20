@@ -1,21 +1,41 @@
 import { useState } from "react"
+import { postFetch } from "../../utils"
 
-const welcomeDialogue = ['接下来，你将开启一段属于你自己的文字冒险游戏']
-
-const userId = Date.now()
-
-export const Init = ({ setInit }) => {
-  const [dialogue, setDialogue] = useState(welcomeDialogue[0])
+export const Init = ({ changePageTo, setInitDialogue }) => {
   const [keyword, setKeyword] = useState(['龙宫城', '美少女', '敲代码'])
+  const [loading, setLoading] = useState(false)
   const keywordOnChange = (e, index) => {
     console.log(e.target.value, index)
     const currentKeyword = [...keyword]
     currentKeyword[index] = e.target.value
     setKeyword(currentKeyword)
   }
+  const getInitDialogue = () => {
+    if (loading) {
+      return
+    }
+    const user = Date.now()
+    setLoading(true)
+    postFetch({
+      url: `http://10.23.113.44:18080/init`,
+      body: {
+        keyword,
+        user,
+      },
+    }).then(({message, url, isOver}) => {
+      setInitDialogue({
+        message: message.split('\n').join('<br />'),
+        imgUrl: url,
+        isOver,
+        user,
+      })
+      changePageTo('dialogue')
+      setLoading(false)
+    })
+  }
+
   return (
     <>
-    <div className="init">
       <div>接下来，你将开启一段属于你自己的文字冒险游戏</div>
       <div className="keyword-setting">
         这是一段关于
@@ -26,13 +46,7 @@ export const Init = ({ setInit }) => {
         的故事。
       </div>
       <div className="tips">可以修改👆🏻标注底纹的关键词哦~</div>
-      <div className="next" onClick={() => {
-        setInit({
-          keyword,
-          user: userId,
-        })
-      }}>我准备好了~</div>
-    </div>
+      <div className="next" onClick={getInitDialogue}>我准备好了~</div>
     </>
   )
 }
