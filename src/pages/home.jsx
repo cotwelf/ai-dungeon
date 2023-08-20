@@ -1,6 +1,7 @@
 import { useState } from "react"
 import classNames from "classnames"
 import { Init } from "./components/init"
+localStorage.clear()
 export const Home = ({ changePageTo, setInitDialogue }) => {
   const [start, setStart] = useState(false)
   return (

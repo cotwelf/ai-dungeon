@@ -20,12 +20,19 @@
       font-size: 18px;
       overflow-y: scroll;
     }
-    .setting {
-      // &::after {
-      //   content: '>';
-      //   display: inline-block;
-      //   position: absolute;
-      // }
+    .record {
+      position: absolute;
+      right: 10px;
+      top: -40px;
+      background-color: $pink;
+      opacity: 0.8;
+      color: white;
+      padding: 5px 10px;
+      border-radius: 4px;
+      cursor: pointer;
+      &:hover {
+        opacity: 1;
+      }
     }
   }
   .bg {

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { postFetch } from "../utils"
+import { Modal } from "./components/full-screen-modal"
 
 const DEFAULT_CHOICE = [
   {
@@ -13,13 +14,16 @@ const DEFAULT_CHOICE = [
 ]
 
 const saveRecord = (dialogues) => {
-  localStorage.setItem('ai-dungeon-record', `${localStorage.getItem('ai-dungeon-record')}<br/>${dialogues}`)
+  localStorage.setItem('ai-dungeon-record', `${getRecord()}<br/>${dialogues}`)
 }
+
+const getRecord = () => localStorage.getItem('ai-dungeon-record') || ''
 
 export const Dialogue = ({ initDialogue }) => {
   const [choices, setChoices] = useState(null)
   const [dialogue, setDialogue] = useState(initDialogue)
   const [loading, setLoading] = useState(false)
+  const [modal, setModal] = useState(false)
   const postChoice = (type) => {
     console.log('postChoice')
     if (loading) {
@@ -30,7 +34,7 @@ export const Dialogue = ({ initDialogue }) => {
       ...dialogue,
       message: '（AI 姬正在绞尽脑汁生成剧情，请稍等一下喵~）'
     })
-    saveRecord(`（你选择了 ${type.toUpperCase()}）`)
+    saveRecord(`（你选择了 ${type.toUpperCase()}）<br /><br />`)
     setLoading(true)
     postFetch({
       url: `http://10.23.113.44:18080/answer`,
@@ -60,10 +64,11 @@ export const Dialogue = ({ initDialogue }) => {
   }, [initDialogue])
   return (
     <>
+      {modal && <Modal innerHtml={getRecord()} setModal={setModal} />}
       <div className='container' >
         <div className='dialogue-box' >
           <div className='dialogue' dangerouslySetInnerHTML={{ __html: dialogue.message }}></div>
-          <div className='setting'/>
+          <div className='record' onClick={() => setModal(true)}>剧情回顾</div>
         </div>
         <img className='bg' src={dialogue.imgUrl} />
       </div>

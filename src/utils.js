@@ -21,4 +21,4 @@ export const postFetch = throttle((postOpts) => {
     headers,
     body: JSON.stringify(body),
   }).then(response => response.json())
-}, 5000, { 'trailing': false })
+}, 500, { 'trailing': false })
