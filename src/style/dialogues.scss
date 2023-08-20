@@ -18,9 +18,9 @@
       text-align: left;
       padding: $dialogue-space-normal $dialogue-space-wider;
       font-size: 18px;
-      overflow-y: scroll;
+      overflow-y: auto;
     }
-    .record {
+    .btn {
       position: absolute;
       right: 10px;
       top: -40px;
@@ -32,6 +32,9 @@
       cursor: pointer;
       &:hover {
         opacity: 1;
+      }
+      &.end {
+        top: -80px;
       }
     }
   }

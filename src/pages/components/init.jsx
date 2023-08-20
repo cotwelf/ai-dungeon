@@ -1,11 +1,10 @@
 import { useState } from "react"
-import { postFetch } from "../../utils"
+import { postFetch, savePic } from "../../utils"
 
 export const Init = ({ changePageTo, setInitDialogue }) => {
   const [keyword, setKeyword] = useState(['龙宫城', '美少女', '敲代码'])
   const [loading, setLoading] = useState(false)
   const keywordOnChange = (e, index) => {
-    console.log(e.target.value, index)
     const currentKeyword = [...keyword]
     currentKeyword[index] = e.target.value
     setKeyword(currentKeyword)
@@ -23,12 +22,15 @@ export const Init = ({ changePageTo, setInitDialogue }) => {
         user,
       },
     }).then(({message, url, isOver}) => {
+      const messageString = message.split('\n').join('<br />')
       setInitDialogue({
-        message: message.split('\n').join('<br />'),
+        message: messageString,
         imgUrl: url,
         isOver,
         user,
       })
+      // saveRecord(`${messageString}<br />`)
+      savePic(url)
       changePageTo('dialogue')
       setLoading(false)
     })

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { postFetch } from "../utils"
+import { postFetch, savePic } from "../utils"
 import { Modal } from "./components/full-screen-modal"
 
 const DEFAULT_CHOICE = [
@@ -19,13 +19,12 @@ const saveRecord = (dialogues) => {
 
 const getRecord = () => localStorage.getItem('ai-dungeon-record') || ''
 
-export const Dialogue = ({ initDialogue }) => {
+export const Dialogue = ({ initDialogue, changePageTo }) => {
   const [choices, setChoices] = useState(null)
   const [dialogue, setDialogue] = useState(initDialogue)
   const [loading, setLoading] = useState(false)
   const [modal, setModal] = useState(false)
   const postChoice = (type) => {
-    console.log('postChoice')
     if (loading) {
       return
     }
@@ -51,6 +50,7 @@ export const Dialogue = ({ initDialogue }) => {
         isOver,
       })
       saveRecord(messageString)
+      savePic(url)
       if (!isOver) {
         setChoices(DEFAULT_CHOICE)
       }
@@ -68,7 +68,8 @@ export const Dialogue = ({ initDialogue }) => {
       <div className='container' >
         <div className='dialogue-box' >
           <div className='dialogue' dangerouslySetInnerHTML={{ __html: dialogue.message }}></div>
-          <div className='record' onClick={() => setModal(true)}>剧情回顾</div>
+          <div className='btn record' onClick={() => setModal(true)}>剧情回顾</div>
+          <div className='btn end' onClick={() => changePageTo('home')}>结束游戏</div>
         </div>
         <img className='bg' src={dialogue.imgUrl} />
       </div>

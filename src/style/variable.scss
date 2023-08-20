@@ -28,9 +28,14 @@ $text-shadow-default: -1px -1px 1px #000,
   background-color: white;
   width: 100vw;
   height: 100vh;
-  animation: blink 2s;
-  z-index: 999;
+  opacity: 0;
+  z-index: -9999;
   position: absolute;
+  transition: opacity 0.5s;
+  &.show {
+    opacity: 1;
+    z-index: 9999;
+  }
 }
 .card-changing {
   opacity: 1;

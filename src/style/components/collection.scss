@@ -1,0 +1,35 @@
+div.collection.card {
+  width: 980px;
+  height: 80vh;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items:flex-start;
+  flex-wrap: wrap;
+  padding: 30px;
+  overflow: auto;
+  .game-pic {
+    width: 200px;
+    height: 200px;
+    background-position: center;
+    background-size: cover;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin: 20px;
+    &:hover {
+      width: 16vw;
+      height: 16vw;
+    }
+    &.amplifyed {
+      width: 80vw;
+      height: 70vh;
+      background-size: contain;
+      background-repeat: no-repeat;
+      top: 0;
+    }
+    &.hide {
+      width: 0;
+      height: 0;
+      margin: 0;
+    }
+  }
+}
