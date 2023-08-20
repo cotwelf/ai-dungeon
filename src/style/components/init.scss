@@ -42,9 +42,14 @@ div.init.card {
     border-radius: 4px;
     padding: 2px 20px;
     margin-top: $space-wide;
+    outline: none;
+    border: none;
+    width: 150px;
+    height: 36px;
+    font-size: large;
+    transition: all 0.1s;
     &:hover {
       background-color: $pink-light;
-      transition: all 0.1s;
     }
   }
 

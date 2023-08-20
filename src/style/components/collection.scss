@@ -1,8 +1,8 @@
 div.collection.card {
-  width: 980px;
+  width: 80vw;
   height: 80vh;
   flex-direction: row;
-  justify-content: flex-start;
+  justify-content: center;
   align-items:flex-start;
   flex-wrap: wrap;
   padding: 30px;
@@ -13,12 +13,8 @@ div.collection.card {
     background-position: center;
     background-size: cover;
     cursor: pointer;
-    transition: all 0.3s;
+    // transition: all 0.3s;
     margin: 20px;
-    &:hover {
-      width: 16vw;
-      height: 16vw;
-    }
     &.amplifyed {
       width: 80vw;
       height: 70vh;
