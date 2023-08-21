@@ -1,5 +1,5 @@
-import { throttle } from 'lodash'
-export const postFetch = throttle((postOpts) => {
+// import { throttle } from 'lodash'
+export const postFetch = (postOpts) => {
   const {
     url,
     body,
@@ -21,7 +21,7 @@ export const postFetch = throttle((postOpts) => {
     headers,
     body: JSON.stringify(body),
   }).then(response => response.json())
-}, 500, { 'trailing': false })
+}
 
 export const saveRecord = (dialogues) => {
   localStorage.setItem('ai-dungeon-record', `${getRecord()}<br/>${dialogues}`)
